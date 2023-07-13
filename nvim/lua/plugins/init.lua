@@ -1,3 +1,4 @@
+-- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
    vim.fn.system({
@@ -10,6 +11,14 @@ if not vim.loop.fs_stat(lazypath) then
    })
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- Monkey patch spawn command to work on remote devbox. Sorry, he wouldn't accept my PR T_T
+local spawn = require("lazy.manage.process").spawn
+require("lazy.manage.process").spawn = function(cmd, opts)
+  opts = opts or {}
+  opts.env = vim.tbl_extend("force", opts.env or {}, { GIT_CONFIG_NOSYSTEM = "1" })
+  return spawn(cmd, opts)
+end
 
 require('lazy').setup({
    "nathom/filetype.nvim",         -- Better filetype

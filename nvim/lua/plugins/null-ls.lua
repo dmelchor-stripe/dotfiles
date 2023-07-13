@@ -23,6 +23,10 @@ null_ls.setup({
     nullls_stripe.formatting.format_scala,
     nullls_stripe.formatting.format_sql,
 
+    -- Python
+    nullls_stripe.formatting.black,
+    nullls_stripe.diagnostics.ruff,
+
     -- go
     null_ls.builtins.formatting.goimports.with({
       condition = has_exe("goimports"),

@@ -84,6 +84,14 @@ for _, lsp in ipairs(servers) do
   })
 end
 
+-- Python
+require('lspconfig').pyright.setup({
+  on_attach = lsp.on_attach,
+  capabilities = lsp.capabilities,
+  flags = lsp.flags,
+  settings = lsp.settings,
+})
+
 lsp.setup()
 
 vim.diagnostic.config({
