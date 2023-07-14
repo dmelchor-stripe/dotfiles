@@ -71,16 +71,17 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
 end)
 
+lsp.setup()
 
 -- Stripe
 require('lspconfig_stripe')
 local servers = { 'tsserver', 'gopls', 'payserver_sorbet' }
-for _, lsp in ipairs(servers) do
-  require('lspconfig')[lsp].setup({
-    on_attach = lsp.on_attach,
-    capabilities = lsp.capabilities,
-    flags = lsp.flags,
-    settings = lsp.settings,
+for _, l in ipairs(servers) do
+  require('lspconfig')[l].setup({
+    on_attach = l.on_attach,
+    capabilities = l.capabilities,
+    flags = l.flags,
+    settings = l.settings,
   })
 end
 
@@ -92,7 +93,22 @@ require('lspconfig').pyright.setup({
   settings = lsp.settings,
 })
 
-lsp.setup()
+-- Metals
+local metals_lsp = lsp.build_options('metals', {})
+local metals_config = require('metals').bare_config()
+
+metals_config.capabilities = metals_lsp.capabilities
+
+-- Autocmd that will actually be in charging of starting the whole thing
+local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "scala", "sbt", "java" },
+  callback = function()
+    require("metals").initialize_or_attach(metals_config)
+  end,
+  group = nvim_metals_group,
+})
+
 
 vim.diagnostic.config({
   virtual_text = true,
