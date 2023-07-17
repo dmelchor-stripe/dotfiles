@@ -8,14 +8,11 @@ local function has_exe(name)
   end
 end
 null_ls.setup({
-  root_dir = function(fname)
-    return null_utils.root_pattern(".git")(fname) or null_utils.path.dirname(fname)
-  end,
   sources = {
     -- JavaScript, typescript
     nullls_stripe.diagnostics.eslint_d,
     nullls_stripe.formatting.eslint_d,
-    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.prettier,
 
     -- Horizon stack
     nullls_stripe.formatting.format_java,

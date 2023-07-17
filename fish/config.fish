@@ -12,13 +12,13 @@ fish_add_path /opt/homebrew/bin
 # END STRIPE CONFIG
 
 fish_add_path ~/.local/bin
-fish_add_path ~/.cargo/bin
-fish_add_path /opt/homebrew/bin
+fish_add_path /usr/local/bin
 
 abbr -a c clear
 abbr -a e exit
 abbr -a zoo 'cd ~/stripe/zoolander/'
 abbr -a dot 'cd ~/Documents/dotfiles/'
+abbr -a personal 'cd ~/personal/'
 
 if command -v exa > /dev/null
 	abbr -a l 'exa'
