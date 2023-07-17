@@ -2,6 +2,7 @@ local lsp = require('lsp-zero').preset('recommended')
 
 lsp.ensure_installed({
   'tsserver',
+  'gopls',
   'lua_ls',
   'jdtls',
   'bashls',
@@ -13,6 +14,7 @@ lsp.ensure_installed({
   'pyright',
   'rust_analyzer',
   'yamlls',
+  'payserver_sorbet'
 })
 
 -- Preferences
@@ -22,7 +24,6 @@ lsp.set_preferences({
 
 -- Autocompletion
 local cmp = require('cmp')
-local luasnip = require('luasnip')
 vim.g.copilot_no_tab_map = true
 lsp.setup_nvim_cmp({
   sources = {
@@ -70,26 +71,6 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
-
--- Stripe
-require('lspconfig_stripe')
-local servers = { 'tsserver', 'gopls', 'payserver_sorbet' }
-for _, l in ipairs(servers) do
-  require('lspconfig')[l].setup({
-    on_attach = l.on_attach,
-    capabilities = l.capabilities,
-    flags = l.flags,
-    settings = l.settings,
-  })
-end
-
--- Python
-require('lspconfig').pyright.setup({
-  on_attach = lsp.on_attach,
-  capabilities = lsp.capabilities,
-  flags = lsp.flags,
-  settings = lsp.settings,
-})
 
 -- Metals
 local metals_lsp = lsp.build_options('metals', {})

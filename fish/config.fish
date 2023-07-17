@@ -3,6 +3,10 @@ source (rbenv init -|psub)
 source ~/stripe/space-commander/bin/sc-env-activate.fish
 functions -e fish_right_prompt
 
+set -Ux PYENV_ROOT $HOME/.pyenv
+pyenv init - | source
+
+fish_add_path "$PYENV_ROOT/bin"
 fish_add_path "$HOME/.rbenv/shims"
 fish_add_path "$HOME/.rbenv/bin"
 fish_add_path "$HOME/stripe/password-vault/bin"
