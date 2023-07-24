@@ -1,0 +1,41 @@
+#!/bin/bash
+sudo yabai --load-sa
+
+# Custom config
+yabai -m config layout bsp \
+          window_placement second_child \
+          mouse_modifier alt \
+          mouse_action1 move \
+          mouse_action2 resize \
+          window_animation_duration 0 \
+          active_window_border_color 0xffb4befe \
+          normal_window_border_color 0xff313244 \
+          insert_feedback_color 0xfffab387 \
+          window_opacity off \
+          window_border_blur off \
+          active_window_opacity 1 \
+          normal_window_opacity 1
+
+yabai -m mouse_drop_action swap
+
+# Rules
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^QuickTime Player$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^FaceTime$" manage=off
+yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^1Password 7$" manage=off
+yabai -m rule --add app="^NordVPN$" manage=off
+yabai -m rule --add app="^java$" manage=off
+
+yabai -m rule --add app="^Spotify$" space=^6
+yabai -m rule --add app="^Slack$" space=^5
+yabai -m rule --add app="^Discord$" space=^5
+yabai -m rule --add app="^Microsoft To Do$" space=^4
+yabai -m rule --add app="^Notion$" space=^4
+yabai -m rule --add app="^Notes$" space=^4
+yabai -m rule --add app="^kitty$" space=^2
+yabai -m rule --add app="^Mimestream$"space=^4

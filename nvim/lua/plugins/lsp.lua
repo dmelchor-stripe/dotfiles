@@ -2,7 +2,6 @@ local lsp = require('lsp-zero').preset('recommended')
 
 lsp.ensure_installed({
   'tsserver',
-  'gopls',
   'lua_ls',
   'jdtls',
   'bashls',
@@ -14,7 +13,6 @@ lsp.ensure_installed({
   'pyright',
   'rust_analyzer',
   'yamlls',
-  'payserver_sorbet'
 })
 
 -- Preferences
@@ -71,6 +69,13 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+-- Setup 'payserver_sorbet'
+require("lspconfig_stripe")
+require("lspconfig")['payserver_sorbet'].setup({
+  capabilities = lsp.capabilities,
+  on_attach = lsp.on_attach,
+})
 
 -- Metals
 local metals_lsp = lsp.build_options('metals', {})

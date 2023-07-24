@@ -42,7 +42,6 @@ nvim_treesitter_configs.setup {
   },
   indent = {
     enable = true,
-    disable = { 'python' }
   },
 }
 

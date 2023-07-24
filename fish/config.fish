@@ -23,6 +23,7 @@ abbr -a e exit
 abbr -a zoo 'cd ~/stripe/zoolander/'
 abbr -a dot 'cd ~/Documents/dotfiles/'
 abbr -a personal 'cd ~/personal/'
+abbr -a pipe 'cd ~/stripe/zoolander/src/python/pipeline/'
 
 if command -v exa > /dev/null
 	abbr -a l 'exa'
@@ -54,6 +55,7 @@ abbr -a grm 'git rm'
 abbr -a gpu 'git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 abbr -a gbd 'git branch -d'
 abbr -a gbdf 'git branch -d (git branch --sort=-committerdate | fzf | sed -e "s/[\*[:space:]]//g" | xargs)'
+abbr -a gbDf 'git branch -D (git branch --sort=-committerdate | fzf | sed -e "s/[\*[:space:]]//g" | xargs)'
 abbr -a gbD 'git branch -D'
 abbr -a gbda 'git branch --merged | egrep -v "(^\*|master|main|dev)'
 abbr -a gswf 'git switch (git branch --sort=-committerdate | fzf | sed -e "s/[\*[:space:]]//g" | xargs)'
