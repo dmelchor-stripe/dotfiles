@@ -29,3 +29,5 @@ shift + ctrl - r : yabai -m space --balance
 # move window to display left and right
 shift + alt - s : yabai -m window --display south; yabai -m display --focus south;
 shift + alt - n : yabai -m window --display north; yabai -m display --focus north;
+shift + alt - w : yabai -m window --display west; yabai -m display --focus west;
+shift + alt - e : yabai -m window --display east; yabai -m display --focus east;

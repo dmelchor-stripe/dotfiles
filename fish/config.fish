@@ -17,6 +17,7 @@ fish_add_path /opt/homebrew/bin
 
 fish_add_path ~/.local/bin
 fish_add_path /usr/local/bin
+fish_add_path "$HOME/.cargo/bin"
 
 abbr -a c clear
 abbr -a e exit
