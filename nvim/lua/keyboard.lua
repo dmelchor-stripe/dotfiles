@@ -39,6 +39,8 @@ vim.keymap.set("n", "<leader>fs", function()
   vim.cmd("Telescope aerial")
 end, { desc = "[F]ind Document [S]ymbol" })
 
+-- Tmux
+map("<C-f>", "<Cmd>silent !tmux neww tmux-sessionizer<CR>", "Open tmux session")
 
 -- Comment
 vim.keymap.set('n', 'gcc', function()

@@ -92,7 +92,7 @@ bind \cf tmux-sessionizer
 setenv FZF_DEFAULT_OPTS "--border --color 'pointer:#B3E1A7,bg+:-1,fg+:#B3E1A7'"
 
 # Editor
-set -x EDITOR vim
+set -x EDITOR nvim
 set -x GIT_EDITOR $EDITOR
 
 # colored man output
@@ -105,6 +105,7 @@ setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
 setenv LESS_TERMCAP_ue \e'[0m'           # end underline
 setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
+set -Ux STARSHIP_LOG 'error'
 starship init fish | source
 
 function fish_greeting

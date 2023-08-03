@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# vim: set ft=bash
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    # Folders
+    folders=(~/stripe)
+    commands=()
+    for folder in "${folders[@]}"; do
+        command="find $folder -mindepth 1 -maxdepth 1 -type d"
+        commands+=("$command")
+    done
+
+    # Direct access folders
+    files=(
+        ~/stripe/zoolander/src/python/pipeline
+        ~/Documents/dotfiles/
+    )
+    for file in "${files[@]}"; do
+        command="echo $file"
+        commands+=("$command")
+    done
+
+    # Join array with " & "
+    joined_command=""
+    for (( i=0; i<${#commands[@]}; i++ )); do
+        joined_command+="${commands[$i]}"
+        if [[ $i -lt $((${#commands[@]} - 1)) ]]; then
+            joined_command+=" & "
+        fi
+    done
+
+    # Fzf
+    final="{ "
+    final+=$joined_command
+    final+="; } | fzf"
+
+    selected=$(eval $final)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected
+    exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected
+fi
+
+if [[ -z $TMUX ]]; then
+    tmux attach -t $selected_name
+    exit 0
+else
+    tmux switch-client -t $selected_name
+fi
+
