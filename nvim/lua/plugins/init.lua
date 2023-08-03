@@ -21,7 +21,6 @@ require("lazy.manage.process").spawn = function(cmd, opts)
 end
 
 require('lazy').setup({
-   "nathom/filetype.nvim",         -- Better filetype
    "nvim-lua/plenary.nvim",        -- Necessary dependency
    'kyazdani42/nvim-web-devicons', -- Cool icons
    'farmergreg/vim-lastplace',     -- Remember last cursor place
