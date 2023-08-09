@@ -81,11 +81,5 @@ neo_tree.setup({
         end
       end,
     },
-    {
-      event = "file_opened",
-      handler = function(_)
-        require("neo-tree").focus()
-      end
-    },
   },
 })
